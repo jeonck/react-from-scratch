@@ -83,6 +83,28 @@ function Troubleshooting() {
           </div>
         </div>
 
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-2xl font-semibold text-blue-600 mb-4">6. 빌드 시 템플릿 리터럴 문법 오류</h2>
+          <p className="text-gray-700 mb-3">템플릿 리터럴 문법이 JSX 코드 예제에 포함되어 빌드 시 오류가 발생하는 문제입니다.</p>
+          <div className="bg-gray-800 text-green-400 p-4 rounded-md font-mono text-sm overflow-x-auto">
+            <pre className="whitespace-pre-wrap">
+              <code>
+                ERROR: Expected "}" but found "w"<br/>
+                파일 내의 코드 예제에서 템플릿 리터럴 문법 (백틱 및 ${} 표현식)이<br/>
+                JSX에서 해석되어 문법 오류가 발생한 경우입니다.
+              </code>
+            </pre>
+          </div>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h3 className="text-lg font-semibold text-blue-700 mb-2">해결 방법</h3>
+            <ul className="list-disc pl-5 space-y-2 text-blue-700">
+              <li>코드 예제 내에서 className 속성에 템플릿 리터럴 문법 사용 피하기</li>
+              <li>JSX 내에서 코드 예제를 보여줄 때는 일반 문자열로 표현</li>
+              <li>템플릿 리터럴 표현이 필요한 경우 적절히 이스케이프 처리하거나 설명으로 대체</li>
+            </ul>
+          </div>
+        </div>
+
         <div className="bg-gray-50 border border-gray-200 rounded-lg p-6">
           <h2 className="text-xl font-semibold text-gray-800 mb-3">예방 팁</h2>
           <p className="text-gray-700 mb-3">에러를 미리 방지할 수 있는 몇 가지 팁:</p>
@@ -92,6 +114,7 @@ function Troubleshooting() {
             <li>JSX 내에서 특수문자나 자바스크립트 코드 표현 시 이스케이프 방법 숙지</li>
             <li>React 컴포넌트 이름은 항상 대문자로 시작</li>
             <li>모든 엘리먼트는 정확하게 닫혀 있어야 함 (예: &lt;br /&gt;)</li>
+            <li>코드 예제를 포함할 때 템플릿 리터럴 문법이 빌드 오류를 유발할 수 있음을 인지</li>
           </ul>
         </div>
       </div>
