@@ -8,6 +8,7 @@ import Navigation from './pages/Navigation';
 import PageComposition from './pages/PageComposition';
 import FeatureImplementation from './pages/FeatureImplementation';
 import StylingAndTheming from './pages/StylingAndTheming';
+import FormHandling from './pages/FormHandling';
 
 function App() {
   return (
@@ -111,6 +112,7 @@ function App() {
           <Route path="/navigation" element={<Navigation />} />
           <Route path="/page-composition" element={<PageComposition />} />
           <Route path="/styling-theming" element={<StylingAndTheming />} />
+          <Route path="/form-handling" element={<FormHandling />} />
           <Route path="/feature-implementation" element={<FeatureImplementation />} />
           <Route path="/project-setup" element={<ProjectSetup />} />
           <Route path="/components" element={<Components />} />

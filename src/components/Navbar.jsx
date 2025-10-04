@@ -14,6 +14,7 @@ function Navbar() {
             <Link to="/navigation" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Navigation</Link>
             <Link to="/page-composition" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Page Composition</Link>
             <Link to="/styling-theming" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Styling & Theming</Link>
+            <Link to="/form-handling" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Form Handling</Link>
             <Link to="/feature-implementation" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Feature Implementation</Link>
             <Link to="/project-setup" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Project Setup</Link>
             <Link to="/components" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200">Components</Link>
