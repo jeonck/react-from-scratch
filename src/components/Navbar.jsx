@@ -1,29 +1,108 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState(null);
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (activeDropdown) {
+        setActiveDropdown(null);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [activeDropdown]);
+
+  // Grouped menu items
+  const menuGroups = {
+    '시작하기': [
+      { name: '프로젝트 설정', path: '/project-setup' },
+    ],
+    '기초 구성': [
+      { name: '내비게이션', path: '/navigation' },
+      { name: '컴포넌트 설계', path: '/components' },
+      { name: '페이지 구성', path: '/page-composition' },
+    ],
+    '기능 구현': [
+      { name: '폼 처리 및 검증', path: '/form-handling' },
+      { name: '성능 최적화', path: '/performance-optimization' },
+      { name: '기능 구현', path: '/feature-implementation' },
+    ],
+    '스타일링': [
+      { name: '스타일링 및 테마', path: '/styling-theming' },
+    ],
+    '문서': [
+      { name: '트러블슈팅', path: '/troubleshooting' },
+    ]
+  };
 
   return (
     <nav className="bg-blue-600 text-white shadow-lg fixed top-0 left-0 right-0 z-50">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           <div className="flex items-center">
-            <Link to="/" className="text-xl font-bold" onClick={() => setIsMenuOpen(false)}>Vite+React+Tailwind</Link>
+            <Link to="/" className="text-xl font-bold">Vite+React+Tailwind</Link>
           </div>
           
-          {/* Desktop Menu */}
-          <div className="hidden md:flex space-x-4 overflow-x-auto py-1">
-            <Link to="/" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Home</Link>
-            <Link to="/navigation" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Navigation</Link>
-            <Link to="/page-composition" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Page Composition</Link>
-            <Link to="/styling-theming" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Styling & Theming</Link>
-            <Link to="/form-handling" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Form Handling</Link>
-            <Link to="/performance-optimization" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Performance</Link>
-            <Link to="/feature-implementation" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Feature Implementation</Link>
-            <Link to="/project-setup" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Project Setup</Link>
-            <Link to="/components" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Components</Link>
-            <Link to="/troubleshooting" className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200 whitespace-nowrap">Troubleshooting</Link>
+          {/* Desktop Menu with Dropdowns */}
+          <div className="hidden md:flex items-center space-x-1">
+            <Link 
+              to="/" 
+              className="hover:bg-blue-700 px-3 py-2 rounded transition duration-200"
+            >
+              Home
+            </Link>
+            
+            {Object.entries(menuGroups).map(([groupName, items]) => (
+              <div 
+                key={groupName} 
+                className="relative"
+                onMouseEnter={() => setActiveDropdown(groupName)}
+                onMouseLeave={() => setActiveDropdown(null)}
+              >
+                <button
+                  className={`px-3 py-2 rounded transition duration-200 flex items-center ${
+                    activeDropdown === groupName ? 'bg-blue-700' : 'hover:bg-blue-700'
+                  }`}
+                >
+                  {groupName}
+                  <svg 
+                    className="ml-1 w-4 h-4" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path 
+                      strokeLinecap="round" 
+                      strokeLinejoin="round" 
+                      strokeWidth="2" 
+                      d="M19 9l-7 7-7-7" 
+                    />
+                  </svg>
+                </button>
+                
+                {activeDropdown === groupName && (
+                  <div className="absolute left-0 mt-2 w-48 bg-blue-700 rounded-md shadow-lg py-1 z-50">
+                    {items.map((item, index) => (
+                      <Link
+                        key={index}
+                        to={item.path}
+                        className="block px-4 py-2 text-sm hover:bg-blue-800 transition duration-150"
+                        onClick={() => setActiveDropdown(null)}
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
           </div>
           
           {/* Mobile Menu Button */}
@@ -69,69 +148,24 @@ function Navbar() {
               >
                 Home
               </Link>
-              <Link 
-                to="/navigation" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Navigation
-              </Link>
-              <Link 
-                to="/page-composition" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Page Composition
-              </Link>
-              <Link 
-                to="/styling-theming" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Styling & Theming
-              </Link>
-              <Link 
-                to="/form-handling" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Form Handling
-              </Link>
-              <Link 
-                to="/performance-optimization" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Performance
-              </Link>
-              <Link 
-                to="/feature-implementation" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Feature Implementation
-              </Link>
-              <Link 
-                to="/project-setup" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Project Setup
-              </Link>
-              <Link 
-                to="/components" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Components
-              </Link>
-              <Link 
-                to="/troubleshooting" 
-                className="block px-3 py-2 rounded hover:bg-blue-800" 
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Troubleshooting
-              </Link>
+              
+              {Object.entries(menuGroups).map(([groupName, items]) => (
+                <div key={groupName}>
+                  <div className="px-3 py-2 font-medium border-b border-blue-600">
+                    {groupName}
+                  </div>
+                  {items.map((item, index) => (
+                    <Link
+                      key={index}
+                      to={item.path}
+                      className="block px-6 py-2 rounded hover:bg-blue-800"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
         )}
