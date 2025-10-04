@@ -9,6 +9,7 @@ import PageComposition from './pages/PageComposition';
 import FeatureImplementation from './pages/FeatureImplementation';
 import StylingAndTheming from './pages/StylingAndTheming';
 import FormHandling from './pages/FormHandling';
+import PerformanceOptimization from './pages/PerformanceOptimization';
 
 function App() {
   return (
@@ -113,6 +114,7 @@ function App() {
           <Route path="/page-composition" element={<PageComposition />} />
           <Route path="/styling-theming" element={<StylingAndTheming />} />
           <Route path="/form-handling" element={<FormHandling />} />
+          <Route path="/performance-optimization" element={<PerformanceOptimization />} />
           <Route path="/feature-implementation" element={<FeatureImplementation />} />
           <Route path="/project-setup" element={<ProjectSetup />} />
           <Route path="/components" element={<Components />} />
