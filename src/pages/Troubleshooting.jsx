@@ -84,7 +84,32 @@ function Troubleshooting() {
         </div>
 
         <div className="bg-white rounded-lg shadow-md p-6 mb-8">
-          <h2 className="text-2xl font-semibold text-blue-600 mb-4">6. 빌드 시 템플릿 리터럴 문법 오류</h2>
+          <h2 className="text-2xl font-semibold text-blue-600 mb-4">6. 드롭다운 메뉴 이벤트 처리 문제</h2>
+          <p className="text-gray-700 mb-3">드롭다운 메뉴가 사용자 상호작용에 따라 안정적으로 동작하지 않는 문제입니다.</p>
+          <div className="bg-gray-800 text-green-400 p-4 rounded-md font-mono text-sm overflow-x-auto">
+            <pre className="whitespace-pre-wrap">
+              <code>
+                // 드롭다운 메뉴가 너무 빨리 사라지는 문제<br/>
+                onMouseEnter로 드롭다운을 열고,<br/>
+                onMouseLeave로 드롭다운을 닫는 구조에서<br/>
+                드롭다운 영역 밖으로 마우스가 이동하면<br/>
+                드롭다운이 즉시 사라지는 문제가 발생
+              </code>
+            </pre>
+          </div>
+          <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-4">
+            <h3 className="text-lg font-semibold text-blue-700 mb-2">해결 방법</h3>
+            <ul className="list-disc pl-5 space-y-2 text-blue-700">
+              <li>드롭다운을 hover 이벤트 대신 click 이벤트로 제어</li>
+              <li>click 이벤트를 사용하여 드롭다운 열기/닫기 토글</li>
+              <li>click outside 기능을 사용하여 드롭다운 외부 클릭 시 닫기</li>
+              <li>event bubbling 문제를 방지하기 위해 e.stopPropagation() 사용</li>
+            </ul>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-lg shadow-md p-6 mb-8">
+          <h2 className="text-2xl font-semibold text-blue-600 mb-4">7. 빌드 시 템플릿 리터럴 문법 오류</h2>
           <p className="text-gray-700 mb-3">템플릿 리터럴 문법이 JSX 코드 예제에 포함되어 빌드 시 오류가 발생하는 문제입니다.</p>
           <div className="bg-gray-800 text-green-400 p-4 rounded-md font-mono text-sm overflow-x-auto">
             <pre className="whitespace-pre-wrap">
@@ -114,6 +139,7 @@ function Troubleshooting() {
             <li>JSX 내에서 특수문자나 자바스크립트 코드 표현 시 이스케이프 방법 숙지</li>
             <li>React 컴포넌트 이름은 항상 대문자로 시작</li>
             <li>모든 엘리먼트는 정확하게 닫혀 있어야 함 (예: &lt;br /&gt;)</li>
+            <li>드롭다운 메뉴 등 상호작용 요소는 hover보다 click 이벤트가 안정적임</li>
             <li>코드 예제를 포함할 때 템플릿 리터럴 문법이 빌드 오류를 유발할 수 있음을 인지</li>
           </ul>
         </div>
