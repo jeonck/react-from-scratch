@@ -7,9 +7,15 @@ function Navbar() {
 
   // Close dropdowns when clicking outside
   useEffect(() => {
-    const handleClickOutside = () => {
+    const handleClickOutside = (event) => {
       if (activeDropdown) {
-        setActiveDropdown(null);
+        const dropdowns = document.querySelectorAll('.dropdown-container');
+        const isClickInside = Array.from(dropdowns).some(dropdown => 
+          dropdown.contains(event.target)
+        );
+        if (!isClickInside) {
+          setActiveDropdown(null);
+        }
       }
     };
 
@@ -62,18 +68,18 @@ function Navbar() {
             {Object.entries(menuGroups).map(([groupName, items]) => (
               <div 
                 key={groupName} 
-                className="relative"
-                onMouseEnter={() => setActiveDropdown(groupName)}
-                onMouseLeave={() => setActiveDropdown(null)}
+                className="relative dropdown-container"
               >
                 <button
-                  className={`px-3 py-2 rounded transition duration-200 flex items-center ${
-                    activeDropdown === groupName ? 'bg-blue-700' : 'hover:bg-blue-700'
-                  }`}
+                  className={`px-3 py-2 rounded transition duration-200 flex items-center ${activeDropdown === groupName ? 'bg-blue-700' : 'hover:bg-blue-700'}`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setActiveDropdown(activeDropdown === groupName ? null : groupName);
+                  }}
                 >
                   {groupName}
                   <svg 
-                    className="ml-1 w-4 h-4" 
+                    className={`ml-1 w-4 h-4 transition-transform duration-200 ${activeDropdown === groupName ? 'rotate-180' : ''}`} 
                     fill="none" 
                     stroke="currentColor" 
                     viewBox="0 0 24 24"
