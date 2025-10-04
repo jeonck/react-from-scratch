@@ -85,7 +85,7 @@ function BasicForm() {
           name="name"
           value={formData.name}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-md ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="이름을 입력하세요"
         />
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -101,7 +101,7 @@ function BasicForm() {
           name="email"
           value={formData.email}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-md ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="이메일을 입력하세요"
         />
         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -117,7 +117,7 @@ function BasicForm() {
           value={formData.message}
           onChange={handleChange}
           rows="4"
-          className={`w-full px-3 py-2 border rounded-md ${errors.message ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="메시지를 입력하세요"
         ></textarea>
         {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
@@ -379,7 +379,7 @@ function RegisterForm() {
           name="name"
           value={values.name}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-md ${errors.name ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="이름을 입력하세요"
         />
         {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
@@ -395,7 +395,7 @@ function RegisterForm() {
           name="email"
           value={values.email}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-md ${errors.email ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="이메일을 입력하세요"
         />
         {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
@@ -411,7 +411,7 @@ function RegisterForm() {
           name="password"
           value={values.password}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-md ${errors.password ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="비밀번호를 입력하세요"
         />
         {errors.password && <p className="text-red-500 text-xs mt-1">{errors.password}</p>}
@@ -427,7 +427,7 @@ function RegisterForm() {
           name="confirmPassword"
           value={values.confirmPassword}
           onChange={handleChange}
-          className={`w-full px-3 py-2 border rounded-md ${errors.confirmPassword ? 'border-red-500' : 'border-gray-300'}`}
+          className="w-full px-3 py-2 border rounded-md"
           placeholder="비밀번호를 다시 입력하세요"
         />
         {errors.confirmPassword && <p className="text-red-500 text-xs mt-1">{errors.confirmPassword}</p>}
